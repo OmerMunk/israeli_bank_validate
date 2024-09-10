@@ -31,7 +31,7 @@ def validate_The_Mail_account(account: str):
     try:
         # Check if the account number consists only of digits and does not exceed the limit size
         if not account.isdigit() or len(account) > LIMIT_SIZE:
-            raise ValueError("שגיאה: מספר החשבון חייב להכיל רק ספרות ואורכו לא יכול לעלות על 9 ספרות.")
+            raise ValueError("The account number must be up to 9 digits and only contain numbers")
 
         # Pad the account number with zeros to the left if it is less than the limit size
         account_number = account.zfill(LIMIT_SIZE)
