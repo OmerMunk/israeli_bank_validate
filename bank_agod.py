@@ -1,4 +1,9 @@
-
+#The function receives the account number and the branch number
+# and sends both as a parameter to the function that calculates
+# the multiplication of the serial number
+# and after that it checks if the last
+# two formulas are 90,72,70,60,20 and if
+# so then the calculation makes sense
 def validate_Association_account(account_number: str,branch_number: str):
     try:
         calculat = str(calculate_bank_agod(account_number,branch_number))
