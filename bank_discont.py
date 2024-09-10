@@ -12,5 +12,4 @@ def validateDiscount_account(account_number: str, branch_number: str) -> bool:
     if final_result in valid_result:
         return True
 
-print(validateDiscount_account("111111111", "123456"))
 
