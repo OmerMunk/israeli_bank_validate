@@ -20,6 +20,8 @@ def validate_Leumi_account(account_number:str,branch_number:str) -> bool:
     branch_multipliers:list[int] = [10,9,8]
 
     account_digits:list[int] = [int(digit) for digit in account_number]
+    if len(account_digits) == 7:
+        account_digits.insert(0,0)
     branch_digits:list[int] = [int(digit) for digit in branch_number]
 
     check_digits:list[int] = account_digits[-2:]
@@ -50,4 +52,5 @@ def validate_Leumi_account(account_number:str,branch_number:str) -> bool:
             return valid
 
         return valid
+
 
