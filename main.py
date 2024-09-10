@@ -1,17 +1,31 @@
-# This is a sample Python script.
+def validate_Citibank_account(account: str, branch: str) -> bool:
+    """
+       Validates a Citibank account number based on a checksum algorithm.
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+       The account number must be 9 digits long, and the branch number must be 3 digits long.
 
+       Args:
+       account (str): A 9-digit string representing the account number.
+       branch (str): A 3-digit string representing the branch number.
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+       Returns:
+       bool: Returns True if the account number is valid according to the checksum algorithm.
+             Returns False if the account number or branch number is invalid..
+       """
+    MULTIPLIERS = [3, 2, 7, 6, 5, 4, 3, 2]
+    LEN_ACCOUNT = 9
+    LEN_BRANCH = 3
+    MODULO = 11
+    # Validate that the account number and branch number are digits of correct lengths
+    if account.isdigit() and len(account) == LEN_ACCOUNT and len(branch) == LEN_BRANCH and branch.isdigit():
+        verification_digit = account[-1]
+        num_to_check = account[:8]
+        # Calculate the sum of the first 8 digits multiplied by their corresponding multipliers
+        total_sum = sum(map(lambda x, y: int(x) * y, num_to_check, MULTIPLIERS))
 
+        result = total_sum % MODULO
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-    print("wow")
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        check_digit = MODULO - result if result != 0 else 0
+        if check_digit == int(verification_digit):
+            return True
+    return False
