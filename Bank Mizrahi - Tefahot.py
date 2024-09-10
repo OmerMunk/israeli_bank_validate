@@ -1,4 +1,4 @@
-def test_Bank_20(account_number: str, branch_number: str):
+def test_bank_20(account_number: str, branch_number: str):
     # Runs a testing function
     initial_tests(account_number, branch_number)
 
@@ -44,9 +44,3 @@ def initial_tests(account_number, branch_number):
         raise Exception("Must contain only whole numbers")
     if not 1000 > int(branch_number) > 400:
         raise Exception("Invalid branch number, a number between 401 and 999 must be given")
-
-
-a = "160778"
-b = "406"
-print(test_Bank_20(a, b))
-
