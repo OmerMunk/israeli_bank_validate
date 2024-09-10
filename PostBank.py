@@ -5,7 +5,7 @@ def validate_The_Mail_account(acount : str):
         if not acount.isdigit() or len(acount) > 9:
             raise ValueError("שגיאה: מספר החשבון חייב להכיל רק ספרות ואורכו לא יכול לעלות על 9 ספרות.")
 
-        acount_number : str = acount.zfill(9)
+        acount_number: str = acount.zfill(9)
         sum = 0
         for i in range(0, 9):
             sum += (9 - i) * int(acount_number[i])
