@@ -16,14 +16,16 @@ def validate_Leumi_account(account_number:str,branch_number:str) -> bool:
     It compares this two-digit number with the calculated check digit to verify the validity of the account number.
 
     """
-    account_multipliers:list[int] = [7,6,5,4,3,2]
-    branch_multipliers:list[int] = [10,9,8]
+    account_multipliers:list[int] = list(range(7,1,-1))
+    branch_multipliers:list[int] = list(range(10,7,-1))
 
     account_digits:list[int] = [int(digit) for digit in account_number]
-    if len(account_digits) == 7:
-        account_digits.insert(0,0)
-    branch_digits:list[int] = [int(digit) for digit in branch_number]
 
+    account_digits_len = 7
+    if len(account_digits) == account_digits_len:
+        account_digits.insert(0,0)
+
+    branch_digits:list[int] = [int(digit) for digit in branch_number]
     check_digits:list[int] = account_digits[-2:]
     account_digits:list[int] = account_digits[:-2]
 
@@ -38,8 +40,12 @@ def validate_Leumi_account(account_number:str,branch_number:str) -> bool:
         account_types:list[int] = [330, 340, 110, 180, 128]
 
     results:list[int] = [total_sum + account_type for account_type in account_types]
+    if is_valid(results,check_digits):
+        return True
+    return False
 
-    valid = False
+def is_valid(results:list[int],check_digits:list[int]) -> bool:
+    isValid = False
     for result in results:
         last_two_digits:int = result % 100
         if last_two_digits == 0:
@@ -48,9 +54,10 @@ def validate_Leumi_account(account_number:str,branch_number:str) -> bool:
             calculated_check_digit = 100 - last_two_digits
 
         if calculated_check_digit == check_digits[0] * 10 + check_digits[1]:
-            valid = True
-            return valid
+            isValid = True
+            return isValid
 
-        return valid
+        return isValid
 
 
+print(validate_Leumi_account(account_number='34718588',branch_number='927'))
