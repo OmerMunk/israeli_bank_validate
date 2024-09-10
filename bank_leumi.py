@@ -60,4 +60,3 @@ def is_valid(results:list[int],check_digits:list[int]) -> bool:
         return isValid
 
 
-print(validate_Leumi_account(account_number='34718588',branch_number='927'))
