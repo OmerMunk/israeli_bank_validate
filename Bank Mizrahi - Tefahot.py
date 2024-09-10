@@ -20,31 +20,35 @@ def test_bank_20(account_number: str, branch_number: str) -> bool:
     # Convert branch number to int
     branch_number_int_conversion = int(branch_number)
 
+    MINIMUM_NUMBER_TO_TEST = 400
+    MAXIMUM_NUMBER_TO_TEST = 800
     # Branches in the range of 401-799 must subtract 400
-    if 800 > branch_number_int_conversion > 400:
+    if MAXIMUM_NUMBER_TO_TEST > branch_number_int_conversion > MINIMUM_NUMBER_TO_TEST:
         branch_number_int_conversion -= 400
 
-    tamp = 0
-    multiplier = 1
+    tamp = 0 # Connecting the hems
+    multiplier = 1 # changes to capitulations
 
+    # Process account number digits in reverse order
     for num in account_number[::-1]:
         if int(num) == 0:
             continue
         tamp += int(num) * multiplier
         multiplier += 1
 
-    multiplier += 1
+    multiplier += 1 # Increment multiplier after processing the account number
 
+    # Process branch number digits in reverse order
     for num in str(branch_number_int_conversion)[::-1]:
         if int(num) == 0:
             continue
         tamp += int(num) * multiplier
         multiplier += 1
 
-    CONNECTING_SHOULD_DIVIDED = 11
-    return (tamp % CONNECTING_SHOULD_DIVIDED == 0
-            or tamp % CONNECTING_SHOULD_DIVIDED == 2
-            or tamp % CONNECTING_SHOULD_DIVIDED == 4)
+    DIVIDE_THE_RESULT = 11
+    return (tamp % DIVIDE_THE_RESULT == 0
+            or tamp % DIVIDE_THE_RESULT == 2
+            or tamp % DIVIDE_THE_RESULT == 4)
 
 
 def initial_tests(account_number, branch_number):
