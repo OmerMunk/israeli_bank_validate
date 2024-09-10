@@ -1,3 +1,4 @@
+# Validate if the account and branch numbers contain the right characters and are in the right length
 def check_valid_str(account_numbers: str, branch_number: str):
     REQUIRED_ACCOUNT_DIGITS = 9
     REQUIRED_BRANCH_DIGITS = 3
@@ -7,7 +8,7 @@ def check_valid_str(account_numbers: str, branch_number: str):
         return False
     return True
 
-
+# Validate the account number according to the banks formatting rules
 def validate_hsbc_account(account_number: str, branch_number: str):
     if not check_valid_str(account_number, branch_number):
         return False
