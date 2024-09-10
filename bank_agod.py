@@ -7,17 +7,23 @@
 def validate_Association_account(account_number: str,branch_number: str):
     try:
         calculat = str(calculate_bank_agod(account_number,branch_number))
-        ifts = ["90","72","70","60","20"]
-        if calculat[-2:] in ifts:
+        options = ["90","72","70","60","20"]
+        if calculat[-2:] in options:
             return True
-    except ValueError:
         return False
+    #If for any reason there is an error from the function,
+    # then the error will be displayed, but if what is returned
+    # is not in the list, then it means that it is not a valid account number
+    except ValueError:
+        return TypeError
 
-
+#A function that calculates the multiplication
+# of the serial number
+# from 10 to 2 and then adds the serial number
 def calculate_bank_agod(account_number: str,branch_number: str):
     if 2 < len(account_number) + len(branch_number) < 10:
         return -1
-    criticism_literature = int(account_number[-2:])
+    CRITICISM_LITERATURE = int(account_number[-2:])
     multiplier = 10
     sum_calculate = 0
     branch_number += account_number[:-3]
@@ -28,4 +34,4 @@ def calculate_bank_agod(account_number: str,branch_number: str):
         else:
             continue
 
-    return sum_calculate + criticism_literature
+    return sum_calculate + CRITICISM_LITERATURE
