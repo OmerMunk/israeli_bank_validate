@@ -1,4 +1,4 @@
-def validate_the_operatives_account(account_number: str, branch_number: str):
+def validate_the_operatives_account(account_number: str, branch_number: str) -> bool:
     '''
     This function checks if the account number is valid or not.
     :param account_number: string of the account number
