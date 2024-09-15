@@ -1,6 +1,6 @@
-def validate_the_abenleumi_account(account_number: str, branch_number: str) -> bool:
+def validate_the_habeinleumi_account(account_number: str, branch_number: str) -> bool:
     """
-    Validate an abenleumi account number using a weighted sum calculation.
+    Validate a habeinleumi account number using a weighted sum calculation.
     If the account is not valid for a 9-digit check, it checks the last 6 digits.
     If both checks fail, it validates using the soldiers treasure validation.
 
