@@ -5,7 +5,7 @@ def validate_the_habeinleumi_account(account_number: str, branch_number: str) ->
     If both checks fail, it validates using the soldiers treasure validation.
 
     :param account_number: The account number to validate, expected to be between 2 and 9 digits long.
-    :param branch_number: The branch number associated with the account, used by the otzar ahayal validation.
+    :param branch_number: The branch number associated with the account, used by the otzar hachayal validation.
     :return: :return: True if the account number is valid, false otherwise.
     """
 
@@ -20,7 +20,7 @@ def validate_the_habeinleumi_account(account_number: str, branch_number: str) ->
     if calculation(list_of_numbers) or calculation(list_of_numbers[-6:]):
         return True
 
-    return validate_the_otzar_ahayal_account(account_number, branch_number)
+    return validate_the_otzar_hachayal_account(account_number, branch_number)
 
 
 def calculation(list_of_numbers: list) -> bool:
