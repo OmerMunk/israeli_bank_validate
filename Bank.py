@@ -1,11 +1,11 @@
-def validate_the_international_account(account_number: str, branch_number: str) -> bool:
+def validate_the_abenleumi_account(account_number: str, branch_number: str) -> bool:
     """
-    Validate an international account number using a weighted sum calculation.
+    Validate an abenleumi account number using a weighted sum calculation.
     If the account is not valid for a 9-digit check, it checks the last 6 digits.
     If both checks fail, it validates using the soldiers treasure validation.
 
-    :param account_number: The account number to validate, expected to be between 2 and 6 digits long.
-    :param branch_number: The branch number associated with the account, used by the soldiers treasure validation.
+    :param account_number: The account number to validate, expected to be between 2 and 9 digits long.
+    :param branch_number: The branch number associated with the account, used by the otzar ahayal validation.
     :return: :return: True if the account number is valid, false otherwise.
     """
 
@@ -17,16 +17,13 @@ def validate_the_international_account(account_number: str, branch_number: str) 
 
     list_of_numbers = list(map(int, f"{account_number:0>{max_len}}"))
 
-    if check(list_of_numbers):
+    if calculation(list_of_numbers) or calculation(list_of_numbers[-6:]):
         return True
 
-    if check(list_of_numbers[-6:]):
-        return True
-
-    return validate_the_soldiers_treasure_account(account_number, branch_number)
+    return validate_the_otzar_ahayal_account(account_number, branch_number)
 
 
-def check(list_of_numbers: list) -> bool:
+def calculation(list_of_numbers: list) -> bool:
     """
     Helper function for validating an account number using a weighted sum calculation.
 
@@ -38,4 +35,5 @@ def check(list_of_numbers: list) -> bool:
     :return: True if the account number is valid, false otherwise.
     """
     list_of_keys = range(len(list_of_numbers), 0, -1)
-    return sum(n * k for n, k in zip(list_of_numbers, list_of_keys)) % 11 in (0, 6)
+    valid_numbers = (0, 6)
+    return sum(n * k for n, k in zip(list_of_numbers, list_of_keys)) % 11 in valid_numbers
